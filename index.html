@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior:smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BilaZora — Fine Dining Experience</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#121612',
+          surface: '#1E241E',
+          border: '#2D362D',
+          heading: '#F4F6F4',
+          body: '#C5CBC5',
+          accent: '#4A5842',
+          gold: '#D4B26F',
+        },
+        fontFamily: {
+          serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+          sans: ['Raleway', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  * { box-sizing: border-box; }
+  body { background-color: #121612; color: #C5CBC5; font-family: 'Raleway', sans-serif; }
+  h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; color: #F4F6F4; }
+
+  .gold-glow {
+    box-shadow: 0 0 40px rgba(212, 178, 111, 0.15), 0 0 80px rgba(212, 178, 111, 0.05);
+  }
+  .card-shadow {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .hero-gradient {
+    background: radial-gradient(ellipse at 60% 40%, rgba(74, 88, 66, 0.35) 0%, rgba(18,22,18,0) 70%),
+                radial-gradient(ellipse at 20% 80%, rgba(212,178,111,0.08) 0%, rgba(18,22,18,0) 60%),
+                #121612;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #D4B26F 0%, #b8963e 100%);
+    color: #121612;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 24px rgba(212,178,111,0.3), 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #e8c97f 0%, #D4B26F 100%);
+    box-shadow: 0 6px 32px rgba(212,178,111,0.5), 0 4px 16px rgba(0,0,0,0.4);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    border: 1px solid #D4B26F;
+    color: #D4B26F;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    background: transparent;
+  }
+  .btn-secondary:hover {
+    background: rgba(212,178,111,0.08);
+    box-shadow: 0 0 20px rgba(212,178,111,0.15);
+    transform: translateY(-1px);
+  }
+  .nav-link {
+    color: #C5CBC5;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    transition: color 0.3s ease;
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #D4B26F;
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover { color: #D4B26F; }
+  .nav-link:hover::after { width: 100%; }
+
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #D4B26F, transparent);
+    opacity: 0.4;
+  }
+  .gold-text { color: #D4B26F; }
+  .surface-card {
+    background: #1E241E;
+    border: 1px solid #2D362D;
+    transition: all 0.3s ease;
+  }
+  .surface-card:hover {
+    border-color: rgba(212,178,111,0.3);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 20px rgba(212,178,111,0.06);
+    transform: translateY(-2px);
+  }
+  .menu-tab {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid #2D362D;
+    color: #C5CBC5;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: transparent;
+  }
+  .menu-tab.active, .menu-tab:hover {
+    border-color: #D4B26F;
+    color: #D4B26F;
+    background: rgba(212,178,111,0.06);
+  }
+  .menu-item {
+    background: #1E241E;
+    border-bottom: 1px solid #2D362D;
+    transition: all 0.25s ease;
+    padding: 1.25rem 0;
+  }
+  .menu-item:hover {
+    padding-left: 0.5rem;
+  }
+  .menu-item:last-child { border-bottom: none; }
+
+  .form-input {
+    background: #1E241E;
+    border: 1px solid #2D362D;
+    color: #F4F6F4;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    padding: 0.875rem 1rem;
+    outline: none;
+  }
+  .form-input:focus {
+    border-color: rgba(212,178,111,0.5);
+    box-shadow: 0 0 0 3px rgba(212,178,111,0.06);
+  }
+  .form-input::placeholder { color: #4A5842; }
+  .form-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #C5CBC5;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  select.form-input option { background: #1E241E; }
+
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: #F4F6F4;
+  }
+
+  .cta-band {
+    background: linear-gradient(135deg, #1a2018 0%, #1E241E 40%, #242c22 100%);
+    border-top: 1px solid rgba(212,178,111,0.2);
+    border-bottom: 1px solid rgba(212,178,111,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(212,178,111,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .ambiance-bg {
+    background: linear-gradient(180deg, #121612 0%, #161c16 50%, #121612 100%);
+  }
+
+  .navbar-scrolled {
+    background: rgba(18,22,18,0.97) !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5) !important;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-menu { display: none; }
+    .mobile-menu.open { display: flex; }
+  }
+
+  .ornament { color: #D4B26F; font-size: 1.25rem; opacity: 0.6; }
+
+  .number-input-wrapper { position: relative; }
+  .number-input-wrapper input[type=number]::-webkit-inner-spin-button,
+  .number-input-wrapper input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+  .booking-widget {
+    background: #1E241E;
+    border: 1px solid #2D362D;
+    box-shadow: 0 16px 64px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,178,111,0.05);
+  }
+
+  .section-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #D4B26F;
+  }
+
+  .location-card {
+    background: #1E241E;
+    border: 1px solid #2D362D;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  footer a { transition: color 0.3s ease; }
+  footer a:hover { color: #D4B26F; }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- ========== NAVIGATION ========== -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(18,22,18,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(45,54,45,0.6);">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
+    <!-- Logo -->
+    <a href="#" class="flex flex-col items-start">
+      <span class="font-serif text-2xl font-light tracking-widest text-heading leading-none">BilaZora</span>
+      <span class="text-gold text-xs tracking-widest font-sans font-light uppercase" style="font-size:0.55rem; letter-spacing:0.3em;">Fine Dining</span>
+    </a>
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-10">
+      <a href="#menu" class="nav-link">The Menu</a>
+      <a href="#booking" class="nav-link">Book a Table</a>
+    </div>
+    <!-- Desktop CTA -->
+    <div class="hidden md:flex items-center gap-4">
+      <a href="#booking" class="btn-primary px-6 py-2.5 text-xs tracking-widest">Reserve a Table</a>
+    </div>
+    <!-- Mobile Hamburger -->
+    <button id="mobile-toggle" class="md:hidden text-heading p-2" aria-label="Open menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <line x1="3" y1="7" x2="21" y2="7"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="17" x2="21" y2="17"/>
+      </svg>
+    </button>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu md:hidden flex-col px-6 pb-6 pt-2 gap-4 border-t" style="border-color: #2D362D;">
+    <a href="#menu" class="nav-link py-2 text-sm">The Menu</a>
+    <a href="#booking" class="nav-link py-2 text-sm">Book a Table</a>
+    <a href="#booking" class="btn-primary text-center py-3 text-xs tracking-widest mt-2">Reserve a Table</a>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section id="home" class="hero-gradient relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background decorative elements -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 right-1/4 w-96 h-96 rounded-full" style="background: radial-gradient(circle, rgba(212,178,111,0.04) 0%, transparent 70%);"></div>
+    <div class="absolute bottom-1/3 left-1/4 w-72 h-72 rounded-full" style="background: radial-gradient(circle, rgba(74,88,66,0.15) 0%, transparent 70%);"></div>
+    <!-- Corner ornaments -->
+    <div class="absolute top-32 left-12 hidden lg:block opacity-20" style="color: #D4B26F; font-family: 'Cormorant Garamond', serif; font-size: 5rem; line-height:1;">✦</div>
+    <div class="absolute top-32 right-12 hidden lg:block opacity-20" style="color: #D4B26F; font-family: 'Cormorant Garamond', serif; font-size: 5rem; line-height:1;">✦</div>
+  </div>
+
+  <div class="relative z-10 text-center px-6 max-w-5xl mx-auto pt-24">
+    <!-- Section label -->
+    <div class="flex items-center justify-center gap-4 mb-8">
+      <div class="gold-divider w-16"></div>
+      <span class="section-label">Est. Fine Dining</span>
+      <div class="gold-divider w-16"></div>
+    </div>
+
+    <!-- Main headline -->
+    <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-light leading-none mb-6" style="color: #F4F6F4; letter-spacing: -0.01em;">
+      A culinary journey<br>
+      <span class="font-serif italic" style="color: #D4B26F;">rooted in heritage</span><br>
+      <span class="font-light">and refinement</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="font-sans font-light text-base md:text-lg max-w-2xl mx-auto mb-12 leading-relaxed" style="color: #C5CBC5; letter-spacing: 0.03em;">
+      Indulge in an exquisite dining experience where every dish is masterfully crafted with local ingredients.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#booking" class="btn-primary px-10 py-4 text-xs tracking-widest w-full sm:w-auto text-center">Reserve a Table</a>
+      <a href="#menu" class="btn-secondary px-10 py-4 text-xs tracking-widest w-full sm:w-auto text-center">Explore The Menu</a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="mt-20 flex flex-col items-center gap-2 opacity-40">
+      <span class="font-sans text-xs tracking-widest uppercase" style="font-size:0.6rem; color: #C5CBC5;">Discover More</span>
+      <div class="w-px h-8 bg-gradient-to-b from-transparent via-gold to-transparent" style="background: linear-gradient(to bottom, transparent, #D4B26F, transparent);"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== AMBIANCE & DINING EXPERIENCE ========== -->
+<section id="ambiance" class="ambiance-bg py-28 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-20">
+      <span class="section-label">The Experience</span>
+      <h2 class="font-serif text-4xl md:text-6xl font-light mt-4 mb-6" style="letter-spacing: -0.01em;">Where Every Detail <em class="italic" style="color: #D4B26F;">Matters</em></h2>
+      <div class="gold-divider max-w-xs mx-auto"></div>
+    </div>
+
+    <!-- Feature Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-px" style="border: 1px solid #2D362D; background: #2D362D;">
+
+      <!-- Card 1 -->
+      <div class="surface-card p-10 group" style="background: #1E241E; border: none;">
+        <div class="mb-6">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#D4B26F" stroke-width="1.2" stroke-linecap="round">
+            <path d="M16 3C16 3 8 10 8 18a8 8 0 0016 0C24 10 16 3 16 3z"/>
+            <path d="M16 18v8"/>
+            <path d="M12 22h8"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-2xl font-light mb-4" style="color: #F4F6F4;">Intimate Atmosphere</h3>
+        <p class="font-sans text-sm leading-relaxed font-light" style="color: #C5CBC5; line-height: 1.8;">
+          Step into a sanctuary of calm elegance. Our dining room has been thoughtfully designed to evoke warmth and exclusivity — where candlelight dances across textured walls and every corner breathes quiet sophistication.
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="surface-card p-10 group" style="background: #1E241E; border: none;">
+        <div class="mb-6">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#D4B26F" stroke-width="1.2" stroke-linecap="round">
+            <circle cx="16" cy="16" r="12"/>
+            <path d="M16 8v8l5 3"/>
+            <path d="M4 16h4M24 16h4M16 4v4M16 24v4"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-2xl font-light mb-4" style="color: #F4F6F4;">Culinary Mastery</h3>
+        <p class="font-sans text-sm leading-relaxed font-light" style="color: #C5CBC5; line-height: 1.8;">
+          Our culinary team brings decades of classical training paired with a pioneering spirit. Each menu is a living document — seasonal, evolving, and deeply personal — crafted to tell the story of our land through flavour and texture.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="surface-card p-10 group" style="background: #1E241E; border: none;">
+        <div class="mb-6">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#D4B26F" stroke-width="1.2" stroke-linecap="round">
+            <path d="M6 26l4-4 4 4 4-4 4 4 4-4"/>
+            <path d="M16 6a6 6 0 010 12"/>
+            <circle cx="16" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-2xl font-light mb-4" style="color: #F4F6F4;">Bespoke Service</h3>
+        <p class="font-sans text-sm leading-relaxed font-light" style="color: #C5CBC5; line-height: 1.8;">
+          From the moment you arrive, you are our sole focus. Our sommelier, chef, and service staff anticipate your preferences before they are spoken — creating evenings that feel effortlessly tailored, memorable, and yours alone.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Second row -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px mt-px" style="background: #2D362D;">
+
+      <div class="surface-card p-10" style="background: #1E241E; border: none;">
+        <div class="flex items-start gap-6">
+          <div class="flex-shrink-0 mt-1">
+            <div class="w-8 h-8 flex items-center justify-center" style="border: 1px solid rgba(212,178,111,0.4);">
+              <span class="gold-text font-serif text-lg">I</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl font-light mb-3" style="color: #F4F6F4;">Local Provenance</h3>
+            <p class="font-sans text-sm leading-relaxed font-light" style="color: #C5CBC5; line-height: 1.8;">We collaborate with the finest regional farmers and foragers to source ingredients at their seasonal peak, ensuring every bite carries the authentic character of our terroir.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="surface-card p-10" style="background: #1E241E; border: none;">
+        <div class="flex items-start gap-6">
+          <div class="flex-shrink-0 mt-1">
+            <div class="w-8 h-8 flex items-center justify-center" style="border: 1px solid rgba(212,178,111,0.4);">
+              <span class="gold-text font-serif text-lg">II</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl font-light mb-3" style="color: #F4F6F4;">Curated Wine Programme</h3>
+            <p class="font-sans text-sm leading-relaxed font-light" style="color: #C5CBC5; line-height: 1.8;">Our cellar holds over 200 labels spanning old-world tradition and new-world innovation. Each pairing is chosen to amplify rather than overshadow — a dialogue between glass and plate.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== MENU SHOWCASE ========== -->
+<section id="menu" class="py-28 px-6" style="background: #121612;">
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <span class="section-label">Culinary Selection</span>
+      <h2 class="font-serif text-4xl md:text-6xl font-light mt-4 mb-6">The <em class="italic" style="color: #D4B26F;">Menu</em></h2>
+      <p class="font-sans text-sm font-light max-w-xl mx-auto leading-relaxed" style="color: #C5CBC5;">
+        A curated selection of seasonal offerings, each crafted with intention and precision. Prices are listed in EUR.
+      </p>
+      <div class="gold-divider max-w-xs mx-auto mt-6"></div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <button class="menu-tab active" data-tab="appetizers">Appetizers</button>
+      <button class="menu-tab" data-tab="mains">Main Courses</button>
+      <button class="menu-tab" data-tab="desserts">Desserts</button>
+    </div>
+
+    <!-- Menu Panels -->
+    <!-- Appetizers -->
+    <div id="tab-appetizers" class="menu-panel" style="border: 1px solid #2D362D;">
+      <div class="p-2">
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Smoked Trout Tartare</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">River trout, crème fraîche, dill oil, cucumber pearls, rye crisp</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 18</span>
+          </div>
+        </div>
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Foie Gras Torchon</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">Duck liver, sauternes reduction, brioche, fig compote, Maldon sea salt</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 24</span>
+          </div>
+        </div>
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Heritage Beet Consommé</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">Slow-roasted beet, goat cheese mousse, walnut oil, micro herbs, edible gold</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 16</span>
+          </div>
+        </div>
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Burrata & Wild Mushroom</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">Hand-pulled burrata, sautéed porcini, truffle vinaigrette, hazelnuts, sourdough</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Courses -->
+    <div id="tab-mains" class="menu-panel hidden" style="border: 1px solid #2D362D;">
+      <div class="p-2">
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Dry-Aged Côte de Bœuf</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">45-day aged ribeye, bone marrow butter, heritage potato gratin, seasonal jus</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 62</span>
+          </div>
+        </div>
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Roasted Lamb Saddle</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">Local lamb, pistachio & herb crust, aubergine purée, pomegranate molasses</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 54</span>
+          </div>
+        </div>
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Adriatic Sea Bass</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">Line-caught sea bass, saffron beurre blanc, fennel confit, caviar garnish</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 48</span>
+          </div>
+        </div>
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Truffle Risotto (V)</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">Carnaroli rice, black truffle, aged parmesan, white wine reduction, chive oil</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 38</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desserts -->
+    <div id="tab-desserts" class="menu-panel hidden" style="border: 1px solid #2D362D;">
+      <div class="p-2">
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Valrhona Chocolate Soufflé</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">72% dark chocolate, Grand Marnier cream, praline ice cream, gold leaf</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 18</span>
+          </div>
+        </div>
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Lavender Crème Brûlée</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">Provençal lavender, vanilla bean custard, caramelised sugar, seasonal berries</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 16</span>
+          </div>
+        </div>
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Deconstructed Baklava</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">Phyllo tuile, pistachio cream, rose water gel, walnut praline, honey reduction</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 15</span>
+          </div>
+        </div>
+        <div class="menu-item px-6 group">
+          <div class="flex justify-between items-start gap-4">
+            <div>
+              <h4 class="font-serif text-xl font-light mb-1 group-hover:text-gold transition-colors" style="color: #F4F6F4;">Cheese Board Selection</h4>
+              <p class="font-sans text-xs font-light leading-relaxed" style="color: #C5CBC5;">Curated artisan cheeses, quince paste, honeycomb, walnut bread, fruit preserve</p>
+            </div>
+            <span class="font-serif text-lg whitespace-nowrap" style="color: #D4B26F;">€ 22</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu note -->
+    <p class="font-sans text-xs font-light text-center mt-8 opacity-50" style="font-size: 0.65rem; letter-spacing: 0.1em; color: #C5CBC5;">
+      Menu changes seasonally · Allergies & dietary requirements accommodated with pleasure · All prices include VAT
+    </p>
+
+  </div>
+</section>
+
+<!-- ========== TESTIMONIALS ========== -->
+<section id="testimonials" class="py-28 px-6" style="background: #161c16;">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16">
+      <span class="section-label">Guest Impressions</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-light mt-4">Voices of <em class="italic" style="color: #D4B26F;">Our Guests</em></h2>
+      <div class="gold-divider max-w-xs mx-auto mt-6"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Testimonial 1 -->
+      <div class="surface-card p-8 card-shadow">
+        <div class="flex gap-1 mb-6">
+          <span style="color: #D4B26F; font-size: 0.85rem;">★★★★★</span>
+        </div>
+        <p class="testimonial-quote text-xl font-light leading-relaxed mb-8" style="font-size: 1.2rem; line-height: 1.7;">
+          "An evening at BilaZora is nothing short of transcendent. The depth of flavour in every course spoke of genuine craft — a rarity in today's dining landscape."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-serif font-light" style="background: #2D362D; color: #D4B26F; border: 1px solid rgba(212,178,111,0.2);">AM</div>
+          <div>
+            <p class="font-sans text-sm font-medium" style="color: #F4F6F4; letter-spacing: 0.05em;">Alexandra M.</p>
+            <p class="font-sans text-xs font-light" style="color: #4A5842; letter-spacing: 0.05em;">Food Critic, Vienna</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="surface-card p-8 card-shadow" style="border-color: rgba(212,178,111,0.2);">
+        <div class="flex gap-1 mb-6">
+          <span style="color: #D4B26F; font-size: 0.85rem;">★★★★★</span>
+        </div>
+        <p class="testimonial-quote text-xl font-light leading-relaxed mb-8" style="font-size: 1.2rem; line-height: 1.7;">
+          "The lamb saddle alone was worth the journey. What impressed me most was the service — attentive without intrusion, warm without excess. Simply exceptional."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-serif font-light" style="background: #2D362D; color: #D4B26F; border: 1px solid rgba(212,178,111,0.2);">JL</div>
+          <div>
+            <p class="font-sans text-sm font-medium" style="color: #F4F6F4; letter-spacing: 0.05em;">Jean-Luc P.</p>
+            <p class="font-sans text-xs font-light" style="color: #4A5842; letter-spacing: 0.05em;">Restaurateur, Lyon</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="surface-card p-8 card-shadow">
+        <div class="flex gap-1 mb-6">
+          <span style="color: #D4B26F; font-size: 0.85rem;">★★★★★</span>
+        </div>
+        <p class="testimonial-quote text-xl font-light leading-relaxed mb-8" style="font-size: 1.2rem; line-height: 1.7;">
+          "There is something profoundly moving about a restaurant that understands its heritage so deeply. BilaZora does not merely feed you — it tells a story with every plate."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-serif font-light" style="background: #2D362D; color: #D4B26F; border: 1px solid rgba(212,178,111,0.2);">SR</div>
+          <div>
+            <p class="font-sans text-sm font-medium" style="color: #F4F6F4; letter-spacing: 0.05em;">Sofia R.</p>
+            <p class="font-sans text-xs font-light" style="color: #4A5842; letter-spacing: 0.05em;">Travel Writer, Belgrade</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== TABLE BOOKING WIDGET ========== -->
+<section id="booking" class="py-28 px-6" style="background: #121612;">
+  <div class="max-w-4xl mx-auto">
+
+    <div class="text-center mb-16">
+      <span class="section-label">Reservations</span>
+      <h2 class="font-serif text-4xl md:text-6xl font-light mt-4 mb-6">Reserve Your <em class="italic" style="color: #D4B26F;">Table</em></h2>
+      <p class="font-sans text-sm font-light max-w-xl mx-auto leading-relaxed" style="color: #C5CBC5;">
+        Secure your table for an evening of exceptional dining. We recommend booking at least 48 hours in advance for weekend sittings.
+      </p>
+      <div class="gold-divider max-w-xs mx-auto mt-6"></div>
+    </div>
+
+    <div class="booking-widget p-8 md:p-12">
+
+      <!-- Reservation form (not the contact form — separate) -->
+      <form id="reservation-form" onsubmit="handleReservation(event)">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <!-- Name -->
+          <div>
+            <label class="form-label">Full Name</label>
+            <input type="text" placeholder="Your full name" class="form-input" required>
+          </div>
+          <!-- Email -->
+          <div>
+            <label class="form-label">Email Address</label>
+            <input type="email" placeholder="your@email.com" class="form-input" required>
+          </div>
+          <!-- Phone -->
+          <div>
+            <label class="form-label">Phone Number</label>
+            <input type="tel" placeholder="+389 ..." class="form-input">
+          </div>
+          <!-- Guests -->
+          <div>
+            <label class="form-label">Number of Guests</label>
+            <select class="form-input" required>
+              <option value="" disabled selected>Select guests</option>
+              <option>1 Guest</option>
+              <option>2 Guests</option>
+              <option>3 Guests</option>
+              <option>4 Guests</option>
+              <option>5 Guests</option>
+              <option>6 Guests</option>
+              <option>7–10 Guests (Private Dining)</option>
+            </select>
+          </div>
+          <!-- Date -->
+          <div>
+            <label class="form-label">Preferred Date</label>
+            <input type="date" class="form-input" required style="color-scheme: dark;">
+          </div>
+          <!-- Time -->
+          <div>
+            <label class="form-label">Preferred Time</label>
+            <select class="form-input" required>
+              <option value="" disabled selected>Select time</option>
+              <option>12:00 — Lunch</option>
+              <option>12:30 — Lunch</option>
+              <option>13:00 — Lunch</option>
+              <option>13:30 — Lunch</option>
+              <option>18:00 — Dinner</option>
+              <option>18:30 — Dinner</option>
+              <option>19:00 — Dinner</option>
+              <option>19:30 — Dinner</option>
+              <option>20:00 — Dinner</option>
+              <option>20:30 — Dinner</option>
+              <option>21:00 — Dinner</option>
+            </select>
+          </div>
+        </div>
+        <!-- Special Requests -->
+        <div class="mb-8">
+          <label class="form-label">Special Requests or Dietary Requirements</label>
+          <textarea rows="3" placeholder="Allergies, celebrations, preferred seating arrangements..." class="form-input resize-none"></textarea>
+        </div>
+        <!-- Submit -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p class="font-sans text-xs font-light opacity-50" style="font-size: 0.65rem; letter-spacing: 0.08em; color: #C5CBC5;">
+            Reservations confirmed via email within 2 hours · Cancellation policy applies
+          </p>
+          <button type="submit" class="btn-primary px-10 py-4 text-xs tracking-widest whitespace-nowrap w-full sm:w-auto">
+            Confirm Reservation
+          </button>
+        </div>
+      </form>
+
+      <div id="reservation-success" class="hidden text-center py-8">
+        <div class="mb-4">
+          <span style="color: #D4B26F; font-size: 2.5rem; font-family: 'Cormorant Garamond', serif;">✓</span>
+        </div>
+        <h3 class="font-serif text-2xl font-light mb-2" style="color: #F4F6F4;">Reservation Received</h3>
+        <p class="font-sans text-sm font-light" style="color: #C5CBC5;">We will confirm your table within 2 hours. We look forward to welcoming you.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== CTA BAND ========== -->
+<section class="cta-band py-20 px-6">
+  <div class="max-w-3xl mx-auto text-center relative z-10">
+    <div class="flex items-center justify-center gap-4 mb-6">
+      <div class="gold-divider w-12"></div>
+      <span class="ornament">✦</span>
+      <div class="gold-divider w-12"></div>
+    </div>
+    <h2 class="font-serif text-4xl md:text-5xl font-light mb-5">An Exceptional Evening <em class="italic" style="color: #D4B26F;">Awaits</em></h2>
+    <p class="font-sans text-sm font-light mb-10 leading-relaxed max-w-xl mx-auto" style="color: #C5CBC5;">
+      Join us for a dining experience that honours the art of hospitality. Whether for an intimate celebration or a quiet evening of indulgence — BilaZora is your table.
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="#booking" class="btn-primary px-12 py-4 text-xs tracking-widest w-full sm:w-auto text-center">Reserve a Table</a>
+      <a href="tel:+38900000000" class="btn-secondary px-12 py-4 text-xs tracking-widest w-full sm:w-auto text-center">Call Us Directly</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT FORM ========== -->
+<section id="contact" class="py-28 px-6" style="background: #161c16;">
+  <div class="max-w-4xl mx-auto">
+
+    <div class="text-center mb-16">
+      <span class="section-label">Get in Touch</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-light mt-4 mb-6">Send Us a <em class="italic" style="color: #D4B26F;">Message</em></h2>
+      <p class="font-sans text-sm font-light max-w-md mx-auto leading-relaxed" style="color: #C5CBC5;">
+        For private dining enquiries, partnerships, or any questions about BilaZora, we would love to hear from you.
+      </p>
+      <div class="gold-divider max-w-xs mx-auto mt-6"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-0" style="border: 1px solid #2D362D;">
+
+      <!-- Side info -->
+      <div class="lg:col-span-2 p-8 md:p-10" style="background: #1a201a; border-right: 1px solid #2D362D;">
+        <h3 class="font-serif text-2xl font-light mb-6" style="color: #F4F6F4;">BilaZora</h3>
+        <div class="space-y-6">
+          <div>
+            <p class="font-sans text-xs mb-2" style="color: #D4B26F; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.6rem;">Address</p>
+            <p class="font-sans text-sm font-light leading-relaxed" style="color: #C5CBC5;">ул. Маршал Тито бр.100<br>Ж 2220</p>
+          </div>
+          <div>
+            <p class="font-sans text-xs mb-2" style="color: #D4B26F; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.6rem;">Reservations</p>
+            <p class="font-sans text-sm font-light" style="color: #C5CBC5;">+389 00 000 000</p>
+          </div>
+          <div>
+            <p class="font-sans text-xs mb-2" style="color: #D4B26F; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.6rem;">Email</p>
+            <p class="font-sans text-sm font-light" style="color: #C5CBC5;">hello@bilazora.com</p>
+          </div>
+          <div class="gold-divider opacity-30"></div>
+          <div>
+            <p class="font-sans text-xs mb-3" style="color: #D4B26F; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.6rem;">Follow Us</p>
+            <div class="flex gap-3">
+              <a href="#" class="w-8 h-8 flex items-center justify-center transition-all hover:opacity-100 opacity-50 hover:border-gold" style="border: 1px solid #2D362D;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4B26F" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#D4B26F"/></svg>
+              </a>
+              <a href="#" class="w-8 h-8 flex items-center justify-center transition-all hover:opacity-100 opacity-50" style="border: 1px solid #2D362D;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4B26F" stroke-width="1.5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.7 5.3 4.3 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="lg:col-span-3 p-8 md:p-10" style="background: #1E241E;">
+        <form id="contact-form" class="space-y-5">
+          <div>
+            <label class="form-label">Your Name</label>
+            <input type="text" name="name" placeholder="Full name" class="form-input" required>
+          </div>
+          <div>
+            <label class="form-label">Email Address</label>
+            <input type="email" name="email" placeholder="your@email.com" class="form-input" required>
+          </div>
+          <div>
+            <label class="form-label">Message</label>
+            <textarea name="message" rows="5" placeholder="Your message, enquiry, or special request..." class="form-input resize-none"></textarea>
+          </div>
+          <button type="submit" id="contact-submit" class="btn-primary w-full py-4 text-xs tracking-widest">
+            Send Message
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== LOCATION & HOURS ========== -->
+<section id="location" class="py-28 px-6" style="background: #121612;">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="text-center mb-16">
+      <span class="section-label">Find Us</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-light mt-4">Location & <em class="italic" style="color: #D4B26F;">Hours</em></h2>
+      <div class="gold-divider max-w-xs mx-auto mt-6"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <!-- Address Card -->
+      <div class="location-card p-8">
+        <div class="mb-4">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4B26F" stroke-width="1.2" stroke-linecap="round">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-xl font-light mb-3" style="color: #F4F6F4;">Address</h3>
+        <p class="font-sans text-sm font-light leading-relaxed mb-4" style="color: #C5CBC5;">
+          ул. Маршал Тито бр.100<br>Ж 2220
+        </p>
+        <a href="#" class="font-sans text-xs tracking-widest uppercase" style="color: #D4B26F; font-size: 0.65rem; letter-spacing: 0.15em; border-bottom: 1px solid rgba(212,178,111,0.3); padding-bottom: 2px;">
+          Get Directions →
+        </a>
+      </div>
+
+      <!-- Hours Card -->
+      <div class="location-card p-8">
+        <div class="mb-4">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4B26F" stroke-width="1.2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-xl font-light mb-4" style="color: #F4F6F4;">Opening Hours</h3>
+        <div class="space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="font-sans text-xs" style="color: #C5CBC5;">Monday — Thursday</span>
+            <span class="font-sans text-xs" style="color: #D4B26F;">12:00 — 22:00</span>
+          </div>
+          <div class="gold-divider opacity-20"></div>
+          <div class="flex justify-between items-center">
+            <span class="font-sans text-xs" style="color: #C5CBC5;">Friday — Saturday</span>
+            <span class="font-sans text-xs" style="color: #D4B26F;">12:00 — 23:30</span>
+          </div>
+          <div class="gold-divider opacity-20"></div>
+          <div class="flex justify-between items-center">
+            <span class="font-sans text-xs" style="color: #C5CBC5;">Sunday</span>
+            <span class="font-sans text-xs" style="color: #D4B26F;">12:00 — 21:00</span>
+          </div>
+          <div class="gold-divider opacity-20"></div>
+          <div class="flex justify-between items-center">
+            <span class="font-sans text-xs" style="color: #C5CBC5;">Public Holidays</span>
+            <span class="font-sans text-xs" style="color: #C5CBC5; opacity: 0.5;">By arrangement</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Card -->
+      <div class="location-card p-8">
+        <div class="mb-4">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4B26F" stroke-width="1.2" stroke-linecap="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.2 2 2 0 012.11 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <h3 class="font-serif text-xl font-light mb-4" style="color: #F4F6F4;">Contact</h3>
+        <div class="space-y-3">
+          <div>
+            <p class="font-sans text-xs mb-1" style="color: #D4B26F; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.6rem;">Reservations</p>
+            <a href="tel:+38900000000" class="font-sans text-sm font-light" style="color: #C5CBC5;">+389 00 000 000</a>
+          </div>
+          <div>
+            <p class="font-sans text-xs mb-1" style="color: #D4B26F; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.6rem;">General Enquiries</p>
+            <a href="mailto:hello@bilazora.com" class="font-sans text-sm font-light" style="color: #C5CBC5;">hello@bilazora.com</a>
+          </div>
+          <div>
+            <p class="font-sans text-xs mb-1" style="color: #D4B26F; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.6rem;">Private Dining</p>
+            <a href="mailto:events@bilazora.com" class="font-sans text-sm font-light" style="color: #C5CBC5;">events@bilazora.com</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Map placeholder -->
+    <div class="mt-8 relative overflow-hidden" style="height: 240px; border: 1px solid #2D362D; background: #1E241E;">
+      <div class="absolute inset-0 flex flex-col items-center justify-center gap-3">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D4B26F" stroke-width="1.2" stroke-linecap="round" opacity="0.5">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        <p class="font-sans text-xs font-light opacity-40" style="letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.6rem; color: #C5CBC5;">ул. Маршал Тито бр.100, Ж 2220</p>
+        <a href="https://maps.google.com" target="_blank" class="btn-secondary px-6 py-2 text-xs" style="font-size: 0.65rem; letter-spacing: 0.12em; opacity: 0.7;">Open in Google Maps</a>
+      </div>
+      <!-- Subtle grid lines -->
+      <div class="absolute inset-0 opacity-5" style="background-image: linear-gradient(#D4B26F 1px, transparent 1px), linear-gradient(90deg, #D4B26F 1px, transparent 1px); background-size: 40px 40px;"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer style="background: #0e120e; border-top: 1px solid #2D362D;">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-16 pb-8">
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="mb-4">
+          <span class="font-serif text-3xl font-light tracking-widest" style="color: #F4F6F4;">BilaZora</span>
+          <div style="width: 32px; height: 1px; background: #D4B26F; margin-top: 8px; opacity: 0.6;"></div>
+        </div>
+        <p class="font-sans text-sm font-light leading-relaxed mb-6 max-w-xs" style="color: #C5CBC5; line-height: 1.8; font-size: 0.8rem;">
+          A culinary sanctuary dedicated to heritage, craft, and the art of exceptional hospitality. Every visit is a chapter in an ongoing story of flavour.
+        </p>
+        <div class="flex gap-3">
+          <a href="#" class="w-8 h-8 flex items-center justify-center transition-all opacity-50 hover:opacity-100" style="border: 1px solid #2D362D;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D4B26F" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#D4B26F"/></svg>
+          </a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center transition-all opacity-50 hover:opacity-100" style="border: 1px solid #2D362D;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D4B26F" stroke-width="1.5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.7 5.3 4.3 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+          </a>
+          <a href="#" class="w-8 h-8 flex items-center justify-center transition-all opacity-50 hover:opacity-100" style="border: 1px solid #2D362D;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D4B26F" stroke-width="1.5"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h4 class="font-sans text-xs mb-6 tracking-widest uppercase" style="color: #D4B26F; font-size: 0.6rem; letter-spacing: 0.2em;">Navigate</h4>
+        <ul class="space-y-3">
+          <li><a href="#ambiance" class="font-sans text-sm font-light" style="color: #C5CBC5; font-size: 0.8rem;">The Experience</a></li>
+          <li><a href="#menu" class="font-sans text-sm font-light" style="color: #C5CBC5; font-size: 0.8rem;">The Menu</a></li>
+          <li><a href="#booking" class="font-sans text-sm font-light" style="color: #C5CBC5; font-size: 0.8rem;">Book a Table</a></li>
+          <li><a href="#contact" class="font-sans text-sm font-light" style="color: #C5CBC5; font-size: 0.8rem;">Contact</a></li>
+          <li><a href="#location" class="font-sans text-sm font-light" style="color: #C5CBC5; font-size: 0.8rem;">Find Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Info -->
+      <div>
+        <h4 class="font-sans text-xs mb-6 tracking-widest uppercase" style="color: #D4B26F; font-size: 0.6rem; letter-spacing: 0.2em;">Visit</h4>
+        <div class="space-y-4">
+          <div>
+            <p class="font-sans font-light leading-relaxed" style="color: #C5CBC5; font-size: 0.8rem;">
+              ул. Маршал Тито бр.100<br>Ж 2220
+            </p>
+          </div>
+          <div>
+            <p class="font-sans font-light" style="color: #C5CBC5; font-size: 0.8rem;">Mon–Thu: 12:00–22:00</p>
+            <p class="font-sans font-light" style="color: #C5CBC5; font-size: 0.8rem;">Fri–Sat: 12:00–23:30</p>
+            <p class="font-sans font-light" style="color: #C5CBC5; font-size: 0.8rem;">Sun: 12:00–21:00</p>
+          </div>
+          <a href="tel:+38900000000" class="font-sans font-light block" style="color: #C5CBC5; font-size: 0.8rem;">+389 00 000 000</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="gold-divider mb-6 opacity-20"></div>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="font-sans font-light" style="color: #4A5842; font-size: 0.65rem; letter-spacing: 0.08em;">
+        © 2024 BilaZora. All rights reserved.
+      </p>
+      <div class="flex gap-6">
+        <a href="#" class="font-sans font-light" style="color: #4A5842; font-size: 0.65rem; letter-spacing: 0.08em;">Privacy Policy</a>
+        <a href="#" class="font-sans font-light" style="color: #4A5842; font-size: 0.65rem; letter-spacing: 0.08em;">Terms & Conditions</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ========== JAVASCRIPT ========== -->
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      navbar.classList.add('navbar-scrolled');
+    } else {
+      navbar.classList.remove('navbar-scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Menu tabs
+  const tabs = document.querySelectorAll('.menu-tab');
+  const panels = document.querySelectorAll('.menu-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.add('hidden'));
+      tab.classList.add('active');
+      const target = document.getElementById('tab-' + tab.dataset.tab);
+      if (target) target.classList.remove('hidden');
+    });
+  });
+
+  // Reservation form handler
+  function handleReservation(e) {
+    e.preventDefault();
+    const form = document.getElementById('reservation-form');
+    const success = document.getElementById('reservation-success');
+    form.style.opacity = '0';
+    form.style.transition = 'opacity 0.4s ease';
+    setTimeout(() => {
+      form.style.display = 'none';
+      success.classList.remove('hidden');
+      success.style.opacity = '0';
+      setTimeout(() => {
+        success.style.transition = 'opacity 0.4s ease';
+        success.style.opacity = '1';
+      }, 50);
+    }, 400);
+  }
+
+  // Set minimum date for booking form
+  const dateInput = document.querySelector('#reservation-form input[type="date"]');
+  if (dateInput) {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
+  }
+
+  // Intersection observer for subtle entrance animations
+  const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.surface-card, .location-card, .booking-widget').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
